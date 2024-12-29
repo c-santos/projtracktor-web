@@ -1,6 +1,7 @@
 import { ProjectModel } from "../../types/project.type"
 import { StatusChip } from "./StatusChip"
 import './ProjectCard.css'
+import { formatDate } from "../../utils"
 
 export type ProjectCardProps = ProjectModel
 
@@ -23,9 +24,9 @@ export default function ProjectCard({
                 </div>
             </div>
             <div className="footer">
-                <span>Last updated at: {updatedAt}</span>
+                <span>Last updated at: {formatDate(updatedAt)}</span>
                 <br />
-                <span>Created at: {createdAt}</span>
+                <span>Created at: {formatDate(createdAt)}</span>
             </div>
         </div>
     )
