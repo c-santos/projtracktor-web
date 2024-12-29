@@ -1,4 +1,26 @@
-import axios from 'axios';
+import { ProjectModel } from '../../types/project.type';
+import { httpClient } from '../http.client';
 
-export const apiClient = axios.create({ baseURL: 'http://localhost:8000/api' });
+class ProjectsApi {
+    async getProjects() {
+        try {
+            const res = await httpClient.get<ProjectModel[]>('/projects');
+            return res.data;
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    }
 
+    async createProject(data: any) {
+        try {
+            console.log(data)
+            const res = await httpClient.post('/projects')
+            return res
+        } catch (error) {
+            console.error(error)
+        }
+    }
+}
+
+export const projectsApi = new ProjectsApi()
