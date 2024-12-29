@@ -1,4 +1,5 @@
 import { useProjects } from '../../hooks/useProjects'
+import ProjectCard from '../components/ProjectCard';
 import './App.css'
 
 function App() {
@@ -22,7 +23,9 @@ function App() {
       <>
         <h1>Projects</h1>
         {
-          projects.map(p => (<p>{p.updatedAt}</p>))
+          projects.map(p => (
+          <ProjectCard {...p}></ProjectCard>
+          ))
         }
       </>
     )

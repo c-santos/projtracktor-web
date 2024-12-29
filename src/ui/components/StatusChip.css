@@ -1,0 +1,16 @@
+.chip-bg {
+    border-radius: 4px;
+    color: white;
+    width: 120px;
+    height: 40px;
+    text-align: center;
+    align-content: center;
+}
+
+.chip-bg[data-completed=true] {
+    background-color: green;
+}
+
+.chip-bg[data-completed=false] {
+    background-color: orange;
+}
