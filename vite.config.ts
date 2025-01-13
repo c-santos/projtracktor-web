@@ -16,7 +16,6 @@ export default ({ mode }: { mode: string }) => {
             },
         },
         envDir: process.cwd(),
-        envPrefix: '',
         keepProcessEnv: true
     });
 }
