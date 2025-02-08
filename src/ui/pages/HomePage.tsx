@@ -1,8 +1,7 @@
 import { useProjects } from '../../hooks/useProjects'
 import ProjectCard from '../components/ProjectCard';
-import './App.css'
 
-function App() {
+function HomePage() {
   const { error, isLoading, isSuccess, data: projects } = useProjects();
 
   if (isLoading) {
@@ -34,4 +33,4 @@ function App() {
   return null
 }
 
-export default App
+export default HomePage

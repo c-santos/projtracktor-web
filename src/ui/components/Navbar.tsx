@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 type NavBarItem = { label: string; pathname: string };
 
 const navBarItems: NavBarItem[] = [
-    { pathname: '/', label: 'Projects' },
+    { pathname: '/', label: 'Home' },
     { pathname: '/profile', label: 'Profile' },
 ];
 

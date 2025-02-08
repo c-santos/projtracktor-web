@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouteObject } from 'react-router-dom';
-import App from './App';
+import HomePage from './HomePage';
 import Profile from './Profile';
 import BasePage from './BasePage';
 
@@ -10,7 +10,7 @@ const routes: RouteObject[] = [
         children: [
             {
                 path: '/',
-                element: <App />,
+                element: <HomePage />,
             },
             {
                 path: '/profile',
