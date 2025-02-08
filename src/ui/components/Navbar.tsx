@@ -19,5 +19,9 @@ export default function Navbar() {
         ));
     }
 
-    return <TabNav.Root>{renderNavBarItems()}</TabNav.Root>;
+    return (
+        <TabNav.Root style={{ position: 'sticky', top: 0 }}>
+            {renderNavBarItems()}
+        </TabNav.Root>
+    );
 }
