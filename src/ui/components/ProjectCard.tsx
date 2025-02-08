@@ -1,34 +1,32 @@
-import { ProjectModel } from "../../types/project.type"
-import { StatusChip } from "./StatusChip"
-import './ProjectCard.css'
-import { formatDate } from "../../utils"
+import { ProjectModel } from '../../types/project.type';
+import { formatDate } from '../../utils';
+import { Badge, Card, Flex, Heading, Text } from '@radix-ui/themes';
+import { Link } from 'react-router-dom';
 
-export type ProjectCardProps = ProjectModel
+export type ProjectCardProps = ProjectModel;
 
 export default function ProjectCard({
     name,
     description,
     completed,
-    createdAt,
-    updatedAt
+    updatedAt,
 }: ProjectCardProps) {
     return (
-        <div className="project-card-container">
-            <div className="project-card-heading">
-                <div className="heading-left">
-                    <strong id="title">{name}</strong>
-                    <span id="desc">{description}</span>
-                </div>
-                <div className="heading-right">
-                    <StatusChip completed={completed} />
-                </div>
-            </div>
-            <div className="footer">
-                <span>Last updated at: {formatDate(updatedAt)}</span>
-                <br />
-                <span>Created at: {formatDate(createdAt)}</span>
-            </div>
-        </div>
-    )
+        <Card asChild>
+            <Link to={'/'}>
+                <Flex direction={'column'} gap={'2'}>
+                    <Flex justify={'between'}>
+                        <Heading>{name}</Heading>
+                        <Badge variant='soft' size={'3'}>
+                            {completed ? 'Completed' : 'In progress'}
+                        </Badge>
+                    </Flex>
+                    <Flex justify={'between'}>
+                        <Text color='gray'>{description}</Text>
+                        <Text color='gray'>{formatDate(updatedAt)}</Text>
+                    </Flex>
+                </Flex>
+            </Link>
+        </Card>
+    );
 }
-
