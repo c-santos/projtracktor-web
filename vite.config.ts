@@ -4,11 +4,14 @@ import { resolve } from 'path';
 
 // https://vitejs.dev/config/
 export default ({ mode }: { mode: string }) => {
-    process.env = loadEnv(mode, process.cwd(), '')
+    process.env = loadEnv(mode, process.cwd(), '');
     return defineConfig({
         plugins: [react()],
         server: {
-            port: parseInt(process.env.VITE_PORT!) || 3000
+            port: parseInt(process.env.VITE_PORT!) || 3000,
+            cors: {
+                origin: ['http://localhost:8000/*']
+            }
         },
         resolve: {
             alias: {
@@ -16,6 +19,6 @@ export default ({ mode }: { mode: string }) => {
             },
         },
         envDir: process.cwd(),
-        keepProcessEnv: true
+        keepProcessEnv: true,
     });
-}
+};
