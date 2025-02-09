@@ -20,7 +20,14 @@ export default function Navbar() {
     }
 
     return (
-        <TabNav.Root style={{ position: 'sticky', top: 0 }}>
+        <TabNav.Root
+            style={{
+                position: 'sticky',
+                top: 0,
+                zIndex: 100,
+                //backgroundColor: 'slategray'
+            }}
+        >
             {renderNavBarItems()}
         </TabNav.Root>
     );

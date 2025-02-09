@@ -14,13 +14,13 @@ class ProjectsApi {
 
     async createProject(data: any) {
         try {
-            console.log(data)
-            const res = await httpClient.post('/projects', data)
-            return res
+            console.log(data);
+            const res = await httpClient.post('/projects', data);
+            return res;
         } catch (error) {
-            console.error(error)
+            console.error(error);
         }
     }
 }
 
-export const projectsApi = new ProjectsApi()
+export const projectsApi = new ProjectsApi();

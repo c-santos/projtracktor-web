@@ -4,7 +4,7 @@ import { projectsApi } from "../data/api/projects.api";
 export function useProjects() {
     const query = useQuery({
         queryKey: ['projects'],
-        queryFn: async () => await projectsApi.getProjects()
+        queryFn: projectsApi.getProjects
     })
 
     return query
