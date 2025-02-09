@@ -15,7 +15,7 @@ class ProjectsApi {
     async createProject(data: any) {
         try {
             console.log(data)
-            const res = await httpClient.post('/projects')
+            const res = await httpClient.post('/projects', data)
             return res
         } catch (error) {
             console.error(error)
