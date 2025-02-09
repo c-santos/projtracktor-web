@@ -2,6 +2,7 @@ import { createBrowserRouter, RouteObject } from 'react-router-dom';
 import HomePage from './HomePage';
 import Profile from './Profile';
 import BasePage from './BasePage';
+import { ProjectPage } from './ProjectPage';
 
 const routes: RouteObject[] = [
     {
@@ -15,6 +16,10 @@ const routes: RouteObject[] = [
             {
                 path: '/profile',
                 element: <Profile />,
+            },
+            {
+                path: '/projects/:projectId',
+                element: <ProjectPage />,
             },
         ],
     },

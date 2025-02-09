@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 export type ProjectCardProps = ProjectModel;
 
 export default function ProjectCard({
+    id,
     name,
     description,
     completed,
@@ -13,7 +14,7 @@ export default function ProjectCard({
 }: ProjectCardProps) {
     return (
         <Card asChild>
-            <Link to={'/'}>
+            <Link to={`/projects/${id}`}>
                 <Flex direction={'column'} gap={'2'}>
                     <Flex justify={'between'}>
                         <Heading>{name}</Heading>
