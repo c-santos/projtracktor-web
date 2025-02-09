@@ -21,6 +21,15 @@ class ProjectsApi {
             console.error(error);
         }
     }
+
+    async getOneProject(id: string) {
+        try {
+            const res = await httpClient.get<ProjectModel>(`/projects/${id}`);
+            return res.data;
+        } catch (error) {
+            console.error(error);
+        }
+    }
 }
 
 export const projectsApi = new ProjectsApi();
