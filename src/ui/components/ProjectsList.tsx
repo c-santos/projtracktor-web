@@ -33,7 +33,7 @@ export function ProjectsList() {
     if (error) {
         return (
             <>
-                <p>error</p>
+                <h1>Oops! An error occured.</h1>
                 <p>{error.stack}</p>
             </>
         );
@@ -64,7 +64,7 @@ export function ProjectsList() {
                     <ScrollArea style={{ height: '85vh' }}>
                         <Flex gap={'2'} direction={'column'}>
                             {projects.map((p) => (
-                                <ProjectCard {...p}></ProjectCard>
+                                <ProjectCard {...p} key={p.id}></ProjectCard>
                             ))}
                         </Flex>
                     </ScrollArea>

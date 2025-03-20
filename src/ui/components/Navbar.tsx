@@ -13,7 +13,11 @@ export default function Navbar() {
 
     function renderNavBarItems() {
         return navBarItems.map((item) => (
-            <TabNav.Link asChild active={loc.pathname === item.pathname}>
+            <TabNav.Link
+                asChild
+                active={loc.pathname === item.pathname}
+                key={item.pathname}
+            >
                 <Link to={item.pathname}>{item.label}</Link>
             </TabNav.Link>
         ));
