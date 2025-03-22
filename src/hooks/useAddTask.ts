@@ -1,11 +1,12 @@
 import { useMutation } from '@tanstack/react-query';
 import { projectsApi } from '../data/api/projects.api';
+import { TaskPriority } from '../ui/components/PriorityChip';
 
 export type CreateProjectTaskDto = {
     projectId: string;
     name: string;
     description: string;
-    priority: string;
+    priority: TaskPriority;
 };
 
 export function useAddTask() {
@@ -14,7 +15,7 @@ export function useAddTask() {
             const { projectId, ...taskData } = data;
             const response = await projectsApi.createProjectTask(
                 projectId,
-                taskData
+                taskData,
             );
 
             return response;

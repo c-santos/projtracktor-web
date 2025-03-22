@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useProjectTasks } from '../../hooks/useProjectTasks';
 import {
-    Badge,
     Button,
     Text,
     Card,
@@ -14,6 +13,7 @@ import {
 import { AddTaskModal } from './AddTaskModal';
 import { formatDate } from '../../utils';
 import { Link } from 'react-router-dom';
+import { PriorityChip } from './PriorityChip';
 
 export function ProjectTasksList(props: { projectId: string }) {
     const {
@@ -68,11 +68,9 @@ export function ProjectTasksList(props: { projectId: string }) {
                                             <Heading size={'3'}>
                                                 {task.name}
                                             </Heading>
-                                            <Badge variant='soft' size={'3'}>
-                                                {task.priority
-                                                    ? 'Completed'
-                                                    : 'In progress'}
-                                            </Badge>
+                                            <PriorityChip
+                                                priority={task.priority!}
+                                            />
                                         </Flex>
                                         <Flex justify={'between'}>
                                             <Text color='gray' size={'2'}>

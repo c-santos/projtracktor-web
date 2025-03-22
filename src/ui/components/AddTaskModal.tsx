@@ -9,6 +9,7 @@ import {
 import { useState } from 'react';
 import { CreateProjectTaskDto, useAddTask } from '../../hooks/useAddTask';
 import { useParams } from 'react-router-dom';
+import { TaskPriority } from './PriorityChip';
 
 export function AddTaskModal({
     setModalOpen,
@@ -23,7 +24,7 @@ export function AddTaskModal({
         projectId: projectId!,
         name: '',
         description: '',
-        priority: 'low',
+        priority: TaskPriority.LOW,
     });
 
     const addTaskMutation = useAddTask();
@@ -85,15 +86,21 @@ export function AddTaskModal({
                         onValueChange={(value) =>
                             setTaskData((prev) => ({
                                 ...prev,
-                                priority: value,
+                                priority: value as TaskPriority,
                             }))
                         }
                     >
                         <Select.Trigger />
                         <Select.Content>
-                            <Select.Item value='high'>High</Select.Item>
-                            <Select.Item value='medium'>Medium</Select.Item>
-                            <Select.Item value='low'>Low</Select.Item>
+                            <Select.Item value={TaskPriority.HIGH}>
+                                High
+                            </Select.Item>
+                            <Select.Item value={TaskPriority.MEDIUM}>
+                                Medium
+                            </Select.Item>
+                            <Select.Item value={TaskPriority.LOW}>
+                                Low
+                            </Select.Item>
                         </Select.Content>
                     </Select.Root>
                 </label>
