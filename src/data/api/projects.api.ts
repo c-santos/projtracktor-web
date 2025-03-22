@@ -35,9 +35,21 @@ class ProjectsApi {
     async getProjectTasks(projectId: string) {
         try {
             const res = await httpClient.get<TaskModel[]>(
-                `/projects/${projectId}/tasks`,
+                `/projects/${projectId}/tasks`
             );
             return res.data;
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    async createProjectTask(projectId: string, data: any) {
+        try {
+            const res = await httpClient.post(
+                `/projects/${projectId}/tasks`,
+                data
+            );
+            return res;
         } catch (error) {
             console.error(error);
         }
