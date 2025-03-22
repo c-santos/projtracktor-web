@@ -8,17 +8,17 @@ import {
 } from '@radix-ui/themes';
 import { useState } from 'react';
 import { CreateProjectTaskDto, useAddTask } from '../../hooks/useAddTask';
-import { useParams } from 'react-router-dom';
 import { TaskPriority } from './PriorityChip';
 
-export function AddTaskModal({
+export function AddProjectTaskModal({
+    projectId,
     setModalOpen,
     refetch,
 }: {
+    projectId: string,
     setModalOpen: any;
     refetch: any;
 }) {
-    const { projectId } = useParams();
 
     const [taskData, setTaskData] = useState<CreateProjectTaskDto>({
         projectId: projectId!,

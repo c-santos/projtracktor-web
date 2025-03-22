@@ -10,7 +10,7 @@ import {
     ScrollArea,
     Spinner,
 } from '@radix-ui/themes';
-import { AddTaskModal } from './AddTaskModal';
+import { AddProjectTaskModal } from './AddTaskModal';
 import { formatDate } from '../../utils';
 import { Link } from 'react-router-dom';
 import { PriorityChip } from './PriorityChip';
@@ -53,38 +53,37 @@ export function ProjectTasksList(props: { projectId: string }) {
                         <Dialog.Trigger>
                             <Button variant='outline'>+ Add Task</Button>
                         </Dialog.Trigger>
-                        <AddTaskModal
+                        <AddProjectTaskModal
+                            projectId={props.projectId}
                             setModalOpen={setAddTaskModalOpen}
                             refetch={refetch}
                         />
                     </Flex>
-                    <ScrollArea style={{ height: '85vh' }}>
-                        <Flex gap={'2'} direction={'column'}></Flex>
-                        {tasks?.map((task) => (
-                            <Card asChild>
-                                <Link to={`/projects/${task.id}`}>
-                                    <Flex direction={'column'} gap={'2'}>
-                                        <Flex justify={'between'}>
-                                            <Heading size={'3'}>
-                                                {task.name}
-                                            </Heading>
-                                            <PriorityChip
-                                                priority={task.priority!}
-                                            />
-                                        </Flex>
-                                        <Flex justify={'between'}>
-                                            <Text color='gray' size={'2'}>
-                                                {task.description}
-                                            </Text>
-                                            <Text color='gray' size={'2'}>
-                                                {formatDate(task.updatedAt)}
-                                            </Text>
-                                        </Flex>
+                    <Flex gap={'2'} direction={'column'}></Flex>
+                    {tasks?.map((task) => (
+                        <Card asChild key={task.id}>
+                            <Link to={`/projects/${task.id}`}>
+                                <Flex direction={'column'} gap={'2'}>
+                                    <Flex justify={'between'}>
+                                        <Heading size={'3'}>
+                                            {task.name}
+                                        </Heading>
+                                        <PriorityChip
+                                            priority={task.priority!}
+                                        />
                                     </Flex>
-                                </Link>
-                            </Card>
-                        ))}
-                    </ScrollArea>
+                                    <Flex justify={'between'}>
+                                        <Text color='gray' size={'2'}>
+                                            {task.description}
+                                        </Text>
+                                        <Text color='gray' size={'2'}>
+                                            {formatDate(task.updatedAt)}
+                                        </Text>
+                                    </Flex>
+                                </Flex>
+                            </Link>
+                        </Card>
+                    ))}
                 </Dialog.Root>
             </>
         );

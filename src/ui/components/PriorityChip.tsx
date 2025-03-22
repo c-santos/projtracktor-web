@@ -33,13 +33,13 @@ export function PriorityChip(props: PriorityChipProps) {
             case TaskPriority.HIGH:
                 return 'High';
             default:
-                return 'None';
+                return 'No';
         }
     }
 
     return (
         <Badge size={'3'} variant='soft' color={color()}>
-            {text()}
+            {text()} Priority
         </Badge>
     );
 }
