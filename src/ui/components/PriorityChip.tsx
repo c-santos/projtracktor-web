@@ -1,6 +1,7 @@
 import { Badge } from '@radix-ui/themes';
 
 export enum TaskPriority {
+    NONE = 'None',
     LOW = 'Low',
     MEDIUM = 'Medium',
     HIGH = 'High',
@@ -19,6 +20,8 @@ export function PriorityChip(props: PriorityChipProps) {
                 return 'orange';
             case TaskPriority.HIGH:
                 return 'red';
+            case TaskPriority.NONE:
+                return 'green';
             default:
                 return 'green';
         }
@@ -32,6 +35,8 @@ export function PriorityChip(props: PriorityChipProps) {
                 return 'Medium';
             case TaskPriority.HIGH:
                 return 'High';
+            case TaskPriority.NONE:
+                return 'No';
             default:
                 return 'No';
         }

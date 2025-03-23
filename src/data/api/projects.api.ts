@@ -36,7 +36,7 @@ class ProjectsApi {
     async getProjectTasks(projectId: string) {
         try {
             const res = await httpClient.get<TaskModel[]>(
-                `/projects/${projectId}/tasks`,
+                `/projects/${projectId}/tasks?sortBy=priority&sortOrder=DESC`,
             );
             return res.data;
         } catch (error) {
