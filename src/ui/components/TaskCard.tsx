@@ -5,15 +5,28 @@ import {
     useUpdateProjectTask,
 } from '../../hooks/useUpdateProjectTask';
 import { queryClient } from '../../data/http.client';
-import { Card, Checkbox, Flex, Heading, Text } from '@radix-ui/themes';
+import {
+    Card,
+    Checkbox,
+    ContextMenu,
+    Flex,
+    Heading,
+    Text,
+} from '@radix-ui/themes';
 import { PriorityChip } from './PriorityChip';
 import { formatDate } from '../../utils';
+import { useDeleteTask } from '../../hooks/useDeleteTask';
 
-export function TaskCard(props: { task: TaskModel }) {
+type TaskCardProps = {
+    task: TaskModel;
+};
+
+export function TaskCard(props: TaskCardProps) {
     const { task } = props;
     const [checkbox, setCheckbox] = useState<boolean>(task.completed);
 
     const mutation = useUpdateProjectTask(task.projectId!, task.id);
+    const deleteMutation = useDeleteTask();
 
     const markAsCompleted = useCallback(
         async function () {
@@ -31,39 +44,66 @@ export function TaskCard(props: { task: TaskModel }) {
         [task.completed],
     );
 
-    return (
-        <Card key={task.id}>
-            <Flex direction={'row'} justify={'between'} align={'stretch'}>
-                <Flex direction={'column'} flexGrow={'1'}>
-                    <Flex direction={'row'} justify={'between'}>
-                        <Heading size={'3'}>{task.name}</Heading>
-                        <PriorityChip priority={task.priority!} />
-                    </Flex>
+    const handleDeleteTask = async () => {
+        await deleteMutation.mutateAsync(task.id);
 
-                    <Flex direction={'row'} justify={'between'}>
-                        <Text color='gray' size={'2'}>
-                            {task.description}
-                        </Text>
-                        <Text color='gray' size={'2'}>
-                            {formatDate(task.updatedAt)}
-                        </Text>
+        // Trigger a refetch
+        await queryClient.invalidateQueries({
+            queryKey: ['projects', task.projectId, 'tasks'],
+        });
+    };
+
+    return (
+        <ContextMenu.Root>
+            <ContextMenu.Trigger>
+                <Card key={task.id}>
+                    <Flex
+                        direction={'row'}
+                        justify={'between'}
+                        align={'stretch'}
+                    >
+                        <Flex direction={'column'} flexGrow={'1'}>
+                            <Flex direction={'row'} justify={'between'}>
+                                <Heading size={'3'}>{task.name}</Heading>
+                                <PriorityChip priority={task.priority!} />
+                            </Flex>
+
+                            <Flex direction={'row'} justify={'between'}>
+                                <Text color='gray' size={'2'}>
+                                    {task.description}
+                                </Text>
+                                <Text color='gray' size={'2'}>
+                                    {formatDate(task.updatedAt)}
+                                </Text>
+                            </Flex>
+                        </Flex>
+                        <Flex
+                            direction={'row'}
+                            justify={'between'}
+                            align={'center'}
+                            mx={'2'}
+                            px={'2'}
+                        >
+                            <Checkbox
+                                size={'3'}
+                                style={{ cursor: 'pointer' }}
+                                onCheckedChange={markAsCompleted}
+                                checked={checkbox}
+                            />
+                        </Flex>
                     </Flex>
-                </Flex>
-                <Flex
-                    direction={'row'}
-                    justify={'between'}
-                    align={'center'}
-                    mx={'2'}
-                    px={'2'}
+                </Card>
+            </ContextMenu.Trigger>
+            <ContextMenu.Content size={'2'}>
+                <ContextMenu.Item shortcut='E'>Edit</ContextMenu.Item>
+                <ContextMenu.Item
+                    shortcut='D'
+                    color='red'
+                    onClick={handleDeleteTask}
                 >
-                    <Checkbox
-                        size={'3'}
-                        style={{ cursor: 'pointer' }}
-                        onCheckedChange={markAsCompleted}
-                        checked={checkbox}
-                    />
-                </Flex>
-            </Flex>
-        </Card>
+                    Delete
+                </ContextMenu.Item>
+            </ContextMenu.Content>
+        </ContextMenu.Root>
     );
 }
