@@ -3,8 +3,6 @@ import { projectsApi } from '../data/api/projects.api';
 import { TaskPriority } from '../ui/components/PriorityChip';
 
 export type UpdateProjectTaskDto = {
-    projectId: string;
-    taskId: string;
     name?: string;
     description?: string;
     completed?: boolean;

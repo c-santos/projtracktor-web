@@ -1,3 +1,5 @@
+import { TaskPriority } from "../ui/components/PriorityChip";
+
 export type TaskModel = {
     id: string;
     createdAt: string;
@@ -5,6 +7,6 @@ export type TaskModel = {
     name: string;
     description: string;
     completed: boolean;
-    priority?: string | null;
+    priority: TaskPriority;
     projectId?: string;
 }
