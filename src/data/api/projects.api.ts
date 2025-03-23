@@ -1,3 +1,4 @@
+import { UpdateProjectTaskDto } from '../../hooks/useUpdateProjectTask';
 import { ProjectModel } from '../../types/project.type';
 import { TaskModel } from '../../types/task.type';
 import { httpClient } from '../http.client';
@@ -35,7 +36,7 @@ class ProjectsApi {
     async getProjectTasks(projectId: string) {
         try {
             const res = await httpClient.get<TaskModel[]>(
-                `/projects/${projectId}/tasks`
+                `/projects/${projectId}/tasks`,
             );
             return res.data;
         } catch (error) {
@@ -47,7 +48,23 @@ class ProjectsApi {
         try {
             const res = await httpClient.post(
                 `/projects/${projectId}/tasks`,
-                data
+                data,
+            );
+            return res;
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    async updateProjectTask(
+        projectId: string,
+        taskId: string,
+        data: UpdateProjectTaskDto,
+    ) {
+        try {
+            const res = await httpClient.patch(
+                `projects/${projectId}/tasks/${taskId}`,
+                data,
             );
             return res;
         } catch (error) {

@@ -1,23 +1,8 @@
 import { useState } from 'react';
 import { useProjectTasks } from '../../hooks/useProjectTasks';
-import {
-    Button,
-    Text,
-    Card,
-    Dialog,
-    Flex,
-    Heading,
-    Spinner,
-    Checkbox,
-    Grid,
-    Container,
-} from '@radix-ui/themes';
+import { Button, Dialog, Flex, Heading, Spinner } from '@radix-ui/themes';
 import { AddProjectTaskModal } from './AddTaskModal';
-import { formatDate } from '../../utils';
-import { Link } from 'react-router-dom';
-import { PriorityChip } from './PriorityChip';
-import { TaskModel } from '../../types/task.type';
-import { CheckboxGroupIndicator } from '@radix-ui/themes/components/checkbox-group.primitive';
+import { TaskCard } from './TaskCard';
 
 export function ProjectTasksList(props: { projectId: string }) {
     const {
@@ -73,39 +58,4 @@ export function ProjectTasksList(props: { projectId: string }) {
     }
 
     return null;
-}
-
-function TaskCard(props: { task: TaskModel }) {
-    const { task } = props;
-
-    return (
-        <Card key={task.id}>
-            <Flex direction={'row'} justify={'between'} align={'stretch'}>
-                <Flex direction={'column'} flexGrow={'1'}>
-                    <Flex direction={'row'} justify={'between'}>
-                        <Heading size={'3'}>{task.name}</Heading>
-                        <PriorityChip priority={task.priority!} />
-                    </Flex>
-
-                    <Flex direction={'row'} justify={'between'}>
-                        <Text color='gray' size={'2'}>
-                            {task.description}
-                        </Text>
-                        <Text color='gray' size={'2'}>
-                            {formatDate(task.updatedAt)}
-                        </Text>
-                    </Flex>
-                </Flex>
-                <Flex
-                    direction={'row'}
-                    justify={'between'}
-                    align={'center'}
-                    mx={'2'}
-                    px={'2'}
-                >
-                    <Checkbox size={'3'} style={{ cursor: 'pointer' }} />
-                </Flex>
-            </Flex>
-        </Card>
-    );
 }

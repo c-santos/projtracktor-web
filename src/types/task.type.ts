@@ -6,4 +6,5 @@ export type TaskModel = {
     description: string;
     completed: boolean;
     priority?: string | null;
+    projectId?: string;
 }
