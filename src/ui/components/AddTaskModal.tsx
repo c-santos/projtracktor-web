@@ -25,6 +25,7 @@ export function AddProjectTaskModal({
         name: '',
         description: '',
         priority: TaskPriority.LOW,
+        completed: false,
     });
 
     const addTaskMutation = useAddTask();

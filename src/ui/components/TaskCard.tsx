@@ -1,10 +1,13 @@
-import { useCallback, useState } from "react";
-import { TaskModel } from "../../types/task.type";
-import { UpdateProjectTaskDto, useUpdateProjectTask } from "../../hooks/useUpdateProjectTask";
-import { queryClient } from "../../data/http.client";
-import { Card, Checkbox, Flex, Heading, Text } from "@radix-ui/themes";
-import { PriorityChip } from "./PriorityChip";
-import { formatDate } from "../../utils";
+import { useCallback, useState } from 'react';
+import { TaskModel } from '../../types/task.type';
+import {
+    UpdateProjectTaskDto,
+    useUpdateProjectTask,
+} from '../../hooks/useUpdateProjectTask';
+import { queryClient } from '../../data/http.client';
+import { Card, Checkbox, Flex, Heading, Text } from '@radix-ui/themes';
+import { PriorityChip } from './PriorityChip';
+import { formatDate } from '../../utils';
 
 export function TaskCard(props: { task: TaskModel }) {
     const { task } = props;
@@ -22,7 +25,7 @@ export function TaskCard(props: { task: TaskModel }) {
 
             // Trigger a refetch
             await queryClient.invalidateQueries({
-                queryKey: ['projects', task.projectId],
+                queryKey: ['projects', task.projectId, 'tasks'],
             });
         },
         [task.completed],

@@ -7,6 +7,7 @@ export type CreateProjectTaskDto = {
     name: string;
     description: string;
     priority: TaskPriority;
+    completed: boolean;
 };
 
 export function useAddTask() {
