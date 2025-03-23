@@ -102,6 +102,9 @@ export function AddProjectTaskModal({
                             <Select.Item value={TaskPriority.LOW}>
                                 Low
                             </Select.Item>
+                            <Select.Item value={TaskPriority.NONE}>
+                                None
+                            </Select.Item>
                         </Select.Content>
                     </Select.Root>
                 </label>
