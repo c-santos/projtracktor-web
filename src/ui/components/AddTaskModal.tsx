@@ -15,11 +15,10 @@ export function AddProjectTaskModal({
     setModalOpen,
     refetch,
 }: {
-    projectId: string,
+    projectId: string;
     setModalOpen: any;
     refetch: any;
 }) {
-
     const [taskData, setTaskData] = useState<CreateProjectTaskDto>({
         projectId: projectId!,
         name: '',
@@ -32,8 +31,26 @@ export function AddProjectTaskModal({
 
     async function handleSubmit() {
         await addTaskMutation.mutateAsync(taskData);
+        setTaskData({
+            projectId: projectId!,
+            name: '',
+            description: '',
+            priority: TaskPriority.LOW,
+            completed: false,
+        });
         setModalOpen(false);
         refetch();
+    }
+
+    function handleClose() {
+        setModalOpen(false);
+        setTaskData({
+            projectId: projectId!,
+            name: '',
+            description: '',
+            priority: TaskPriority.LOW,
+            completed: false,
+        });
     }
 
     return (
@@ -52,6 +69,7 @@ export function AddProjectTaskModal({
                         size={'3'}
                         id='name'
                         autoComplete='off'
+                        value={taskData.name}
                         onChange={(e) =>
                             setTaskData((prev) => ({
                                 ...prev,
@@ -69,6 +87,7 @@ export function AddProjectTaskModal({
                         size={'3'}
                         id='description'
                         autoComplete='off'
+                        value={taskData.description}
                         onChange={(e) =>
                             setTaskData((prev) => ({
                                 ...prev,
@@ -111,11 +130,7 @@ export function AddProjectTaskModal({
             </Flex>
 
             <Flex gap='3' mt='4' justify='end'>
-                <Button
-                    color='gray'
-                    variant='outline'
-                    onClick={() => setModalOpen(false)}
-                >
+                <Button color='gray' variant='outline' onClick={handleClose}>
                     Cancel
                 </Button>
                 <Button onClick={handleSubmit}>Save</Button>
