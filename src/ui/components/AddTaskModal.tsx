@@ -133,7 +133,7 @@ export function AddProjectTaskModal({
                 <Button color='gray' variant='outline' onClick={handleClose}>
                     Cancel
                 </Button>
-                <Button onClick={handleSubmit}>Save</Button>
+                <Button onClick={handleSubmit}>Add</Button>
             </Flex>
         </Dialog.Content>
     );

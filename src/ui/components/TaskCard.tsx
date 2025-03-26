@@ -105,7 +105,12 @@ export function TaskCard(props: TaskCardProps) {
                 </ContextMenu.Trigger>
                 <EditTaskModal task={task} setModalOpen={setEditModalOpen} />
                 <ContextMenu.Content size={'2'}>
-                    <ContextMenu.Item shortcut='E'>Edit</ContextMenu.Item>
+                    <ContextMenu.Item
+                        shortcut='E'
+                        onClick={() => setEditModalOpen(true)}
+                    >
+                        Edit
+                    </ContextMenu.Item>
                     <ContextMenu.Item
                         shortcut='D'
                         color='red'

@@ -137,7 +137,7 @@ export function EditTaskModal({
                 <Button color='gray' variant='outline' onClick={handleClose}>
                     Cancel
                 </Button>
-                <Button onClick={handleEdit}>Edit</Button>
+                <Button onClick={handleEdit}>Save</Button>
             </Flex>
         </Dialog.Content>
     );
