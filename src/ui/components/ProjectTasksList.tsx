@@ -56,10 +56,13 @@ export function ProjectTasksList(props: { projectId: string }) {
                             refetch={refetch}
                         />
                     </Flex>
-                    <Flex gap={'2'} direction={'column'}></Flex>
-                    {tasks
-                        ?.filter((tasks) => !tasks.completed)
-                        .map((task) => <TaskCard key={task.id} task={task} />)}
+                    <Flex gap={'2'} direction={'column'}>
+                        {tasks
+                            ?.filter((tasks) => !tasks.completed)
+                            .map((task) => (
+                                <TaskCard key={task.id} task={task} />
+                            ))}
+                    </Flex>
                     <Flex justify={'center'} gap={'4'} my={'5'}>
                         <Separator size={'4'} my={'2'} />
                         <Text size={'2'} color='gray'>
@@ -67,9 +70,13 @@ export function ProjectTasksList(props: { projectId: string }) {
                         </Text>
                         <Separator size={'4'} my={'2'} />
                     </Flex>
-                    {tasks
-                        ?.filter((tasks) => tasks.completed)
-                        .map((task) => <TaskCard key={task.id} task={task} />)}
+                    <Flex gap={'2'} direction={'column'}>
+                        {tasks
+                            ?.filter((tasks) => tasks.completed)
+                            .map((task) => (
+                                <TaskCard key={task.id} task={task} />
+                            ))}
+                    </Flex>
                 </Dialog.Root>
             </>
         );
