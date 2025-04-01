@@ -1,6 +1,14 @@
 import { useState } from 'react';
 import { useProjectTasks } from '../../hooks/useProjectTasks';
-import { Button, Dialog, Flex, Heading, Spinner } from '@radix-ui/themes';
+import {
+    Button,
+    Dialog,
+    Flex,
+    Heading,
+    Separator,
+    Spinner,
+    Text,
+} from '@radix-ui/themes';
 import { AddProjectTaskModal } from './AddTaskModal';
 import { TaskCard } from './TaskCard';
 
@@ -49,9 +57,19 @@ export function ProjectTasksList(props: { projectId: string }) {
                         />
                     </Flex>
                     <Flex gap={'2'} direction={'column'}></Flex>
-                    {tasks?.map((task) => (
-                        <TaskCard key={task.id} task={task} />
-                    ))}
+                    {tasks
+                        ?.filter((tasks) => !tasks.completed)
+                        .map((task) => <TaskCard key={task.id} task={task} />)}
+                    <Flex justify={'center'} gap={'4'} my={'5'}>
+                        <Separator size={'4'} my={'2'} />
+                        <Text size={'2'} color='gray'>
+                            Completed
+                        </Text>
+                        <Separator size={'4'} my={'2'} />
+                    </Flex>
+                    {tasks
+                        ?.filter((tasks) => tasks.completed)
+                        .map((task) => <TaskCard key={task.id} task={task} />)}
                 </Dialog.Root>
             </>
         );
